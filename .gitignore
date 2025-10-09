@@ -1,0 +1,11 @@
+.DS_Store
+**/__pycache__
+configs/*
+!configs/config_demo.json
+*.pbs
+TODO.txt
+experiments/
+demo_data_generation/
+
+embedding_clustering.ipynb
+get_edges.py

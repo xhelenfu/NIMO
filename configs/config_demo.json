@@ -1,0 +1,50 @@
+{
+    "data": {
+        "num_workers": 0,
+        "classes": ["R", "NR"],
+        "tma_diameter": 1300,
+        "sample_size_train": 512,
+        "sample_size_test": 512
+    },
+    "model": {
+        "gpu_ids": [0],
+        "emb_dim": 256,
+        "n_heads_gat": 8
+    },
+    "training": {
+        "batch_size": 1,
+        "total_epochs": 20,
+        "learning_rate": 0.00005,
+        "beta1": 0.9,
+        "beta2": 0.999,
+        "weight_decay": 0.0001,
+        "eps": 1e-8
+    },
+    "save_freqs": {
+        "model_freq": 1
+    },
+    "data_sources": {
+        "fp_patient_labels": "demo_data/patient_labels.csv.csv",
+        "dir_expr": "demo_data/samples_cell_expression",
+        "dir_centroids": "demo_data/samples_cell_centroids",
+        "dir_edges": "demo_data/samples_cell_edges_20",
+        "dir_splits": "demo_data/cross_validation_splits",
+        "fp_genes": "input_genes.txt"
+    },
+    "data_sources_predict": {
+        "fp_patient_labels": "demo_data/patient_labels.csv.csv",
+        "dir_expr": "demo_data/samples_cell_expression",
+        "dir_centroids": "demo_data/samples_cell_centroids",
+        "dir_edges": "demo_data/samples_cell_edges_20"
+    },
+    "experiment_dirs": {
+        "load_dir": "last",
+        "model_dir": "models",
+        "predict_output_dir": "predict_output",
+        "val_output_dir": "val_output"
+    },
+    "predict_outs": {
+        "fp_gma": "gma.csv",
+        "fp_embeddings": "embeddings.pt"
+    }
+}

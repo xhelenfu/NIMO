@@ -1,0 +1,22 @@
+--extra-index-url https://download.pytorch.org/whl/cu124
+--find-links https://data.pyg.org/whl/torch-2.4.1+cu124.html
+
+torch==2.4.1
+torchvision==0.19.1
+
+torch-geometric==2.6.0
+torch-scatter==2.1.2
+torch-sparse==0.6.18
+torch-cluster==1.6.3
+torch-spline-conv==1.2.2
+
+numpy==1.26.4
+pandas==2.2.2
+tqdm==4.66.4
+h5py==3.11.0
+natsort==8.4.0
+matplotlib==3.9.2
+seaborn==0.13.2
+scipy==1.14.1
+scikit-learn==1.5.1
+ipykernel==6.28.0
