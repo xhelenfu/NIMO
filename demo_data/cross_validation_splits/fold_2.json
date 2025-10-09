@@ -8,8 +8,7 @@
         "P10",
         "P2"
     ],
-    "val_ids": [],
-    "test_ids": [
+    "val_ids": [
         "P1",
         "P6",
         "P8"
