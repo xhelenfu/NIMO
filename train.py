@@ -336,7 +336,7 @@ if __name__ == "__main__":
 
     parser.add_argument(
         "--config_file",
-        default="configs/config.json",
+        default="configs/config_demo.json",
         type=str,
         help="config file path",
     )
