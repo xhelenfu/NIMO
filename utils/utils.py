@@ -9,14 +9,11 @@ import pandas as pd
 from sklearn.metrics import f1_score, accuracy_score, roc_auc_score
 
 
-def get_device(gpu_ids):
-    if type(gpu_ids) is list:
-        gpu_str = ",".join(str(x) for x in gpu_ids)
-        os.environ["CUDA_VISIBLE_DEVICES"] = gpu_str
-        print("Using GPUs: {}".format(gpu_str))
-        device = torch.device("cuda")
-    else:
-        device = torch.device("cuda")
+def get_device(gpu_id):
+    gpu_str = str(gpu_id)
+    os.environ["CUDA_VISIBLE_DEVICES"] = gpu_str
+    print("Using GPUs: {}".format(gpu_str))
+    device = torch.device("cuda")
 
     return device
 

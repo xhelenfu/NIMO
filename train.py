@@ -33,11 +33,10 @@ def main(config):
         level=logging.INFO,
         stream=sys.stdout,
     )
-
-    device = get_device(opts.model.gpu_ids)
+    device = get_device(config.gpu_id)
 
     # Create experiment directories
-    if config.resume_epoch is not None:
+    if config.resume_epoch != 0:
         make_new = False
     else:
         make_new = True
@@ -114,13 +113,13 @@ def main(config):
     global_step = 0
 
     # Starting epoch
-    if config.resume_epoch is not None:
+    if config.resume_epoch != 0:
         initial_epoch = config.resume_epoch
     else:
         initial_epoch = 0
 
     # Restore saved model
-    if config.resume_epoch is not None:
+    if config.resume_epoch != 0:
         logging.info("Resume training")
 
         load_path = (
@@ -342,15 +341,21 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--resume_epoch",
-        default=None,
+        default=0,
         type=int,
-        help="resume training from this epoch, set to None for new training",
+        help="resume training from this epoch, set to 0 for new training",
     )
     parser.add_argument(
         "--fold_id",
         default=1,
         type=int,
         help="which cross-validation fold",
+    )
+    parser.add_argument(
+        "--gpu_id",
+        default=0,
+        type=int,
+        help="which GPU to use",
     )
 
     config = parser.parse_args()

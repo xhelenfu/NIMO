@@ -34,7 +34,7 @@ def main(config):
         stream=sys.stdout,
     )
 
-    device = get_device(opts.model.gpu_ids)
+    device = get_device(config.gpu_id)
 
     # Create experiment directories
     make_new = False
@@ -132,7 +132,7 @@ def main(config):
 
         for epoch_idx, test_epoch in enumerate(saved_model_epochs):
             fp_out_prefix = (
-                f"{predict_output_dir}/epoch_{test_epoch}_{config.sample_block}/attn"
+                f"{predict_output_dir}/epoch_{test_epoch}_{config.sample_block}/outputs"
             )
             os.makedirs(fp_out_prefix, exist_ok=True)
 
@@ -226,7 +226,7 @@ def main(config):
                     all_pr.append(pred)
 
                     # save the embeddings of the cell, cell_id, A_raw, sign
-                    if config.save_attn:
+                    if config.save_outputs:
                         df_gma = pd.DataFrame(
                             index=cell_ids_all, columns=["A_raw", "sign"]
                         )
@@ -234,13 +234,13 @@ def main(config):
                         df_gma.loc[:, "sign"] = sign.copy()
 
                         # file paths
-                        fp_gma = f"{fp_out_prefix}/{fname}_{opts.predict_outs.fp_gma}"
+                        fp_attn = f"{fp_out_prefix}/{fname}_{opts.predict_outs.fp_attn}"
                         fp_embeddings = (
                             f"{fp_out_prefix}/{fname}_{opts.predict_outs.fp_embeddings}"
                         )
 
                         # save
-                        df_gma.to_csv(fp_gma)
+                        df_gma.to_csv(fp_attn)
                         torch.save(x_neighbs, fp_embeddings)
 
             # have looped through all cores
@@ -262,7 +262,7 @@ def main(config):
             )
 
             # save predictions to txt
-            fp_txt = f"{fp_out_prefix.replace('/attn','')}/predictions.txt"
+            fp_txt = f"{fp_out_prefix.replace('/outputs','')}/predictions.txt"
 
             assert len(all_fnames_unique) == len(cores_gt)
             assert len(all_fnames_unique) == len(cores_pr_prob_cls)
@@ -275,7 +275,7 @@ def main(config):
                         f"{all_fnames_unique[fi]}\t{cores_gt[fi]}\t{cores_pr_prob_cls[fi]}\t{cores_pr_prob[fi]}\n"
                     )
 
-                output_file.write("Overall F1, ACC, and AUC \n")
+                output_file.write("Overall F1, ACC, and AUC - across samples and patients\n")
                 output_file.write(
                     f"{np.around(all_epochs_f1[-1], 5)},{np.around(all_epochs_acc[-1], 5)},{np.around(all_epochs_auc[-1], 5)}\n"
                 )
@@ -344,7 +344,13 @@ if __name__ == "__main__":
         type=int,
         help="sample block of randomly shuffled cell list - 0 start",
     )
-    parser.add_argument("--save_attn", action=argparse.BooleanOptionalAction)
+    parser.add_argument(
+        "--gpu_id",
+        default=0,
+        type=int,
+        help="which GPU to use",
+    )
+    parser.add_argument("--save_outputs", action=argparse.BooleanOptionalAction)
 
     config = parser.parse_args()
     main(config)

@@ -7,13 +7,12 @@
         "sample_size_test": 512
     },
     "model": {
-        "gpu_ids": [0],
         "emb_dim": 256,
         "n_heads_gat": 8
     },
     "training": {
         "batch_size": 1,
-        "total_epochs": 20,
+        "total_epochs": 1,
         "learning_rate": 0.00005,
         "beta1": 0.9,
         "beta2": 0.999,
@@ -32,10 +31,10 @@
         "fp_genes": "demo_data/input_genes.txt"
     },
     "data_sources_predict": {
-        "fp_patient_labels": "demo_data/patient_labels.csv",
-        "dir_expr": "demo_data/samples_cell_expression",
-        "dir_centroids": "demo_data/samples_cell_centroids",
-        "dir_edges": "demo_data/samples_cell_edges_20"
+        "fp_patient_labels": "demo_data_external/patient_labels.csv",
+        "dir_expr": "demo_data_external/samples_cell_expression",
+        "dir_centroids": "demo_data_external/samples_cell_centroids",
+        "dir_edges": "demo_data_external/samples_cell_edges_20"
     },
     "experiment_dirs": {
         "load_dir": "last",
@@ -44,7 +43,7 @@
         "val_output_dir": "val_output"
     },
     "predict_outs": {
-        "fp_gma": "gma.csv",
+        "fp_attn": "attn.csv",
         "fp_embeddings": "embeddings.pt"
     }
 }
