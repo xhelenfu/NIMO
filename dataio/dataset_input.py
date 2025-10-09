@@ -46,7 +46,7 @@ class DataProcessing(data.Dataset):
         self.n_genes = len(self.genes)
 
         if self.mode != "predict":
-            # int
+
             self.split_ids = get_splits(
                 opts_data_sources.dir_splits, self.fold_id, self.mode
             )
@@ -57,7 +57,7 @@ class DataProcessing(data.Dataset):
             self.fps_expr = [
                 x
                 for x in fps_expr
-                if int(os.path.basename(x).split("_")[0]) in self.split_ids
+                if str(os.path.basename(x).split("_")[0]) in self.split_ids
             ]
 
             df_tma_info = pd.read_csv(opts_data_sources.fp_patient_labels)
@@ -77,7 +77,7 @@ class DataProcessing(data.Dataset):
             fps_expr = glob.glob(opts_data_sources_predict.dir_expr + "/*.csv")[:3]
             self.fps_expr = fps_expr.copy()
 
-            self.split_ids = [int(os.path.basename(x).split("_")[0]) for x in self.fps_expr]
+            self.split_ids = [str(os.path.basename(x).split("_")[0]) for x in self.fps_expr]
 
             df_tma_info = pd.read_csv(opts_data_sources_predict.fp_patient_labels)
             self.df_tma_info = df_tma_info[df_tma_info["patient_id"].isin(self.split_ids)]
@@ -274,7 +274,7 @@ class DataProcessing(data.Dataset):
         ]
         fp_edges = [x for x in self.fps_edges if os.path.basename(x) == fname][0]
 
-        patient_id = int(os.path.basename(fp_expr).split("_")[0])
+        patient_id = str(os.path.basename(fp_expr).split("_")[0])
 
         response = self.df_tma_info.loc[
             self.df_tma_info["patient_id"] == patient_id, "response"

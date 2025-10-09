@@ -24,15 +24,15 @@
         "model_freq": 1
     },
     "data_sources": {
-        "fp_patient_labels": "demo_data/patient_labels.csv.csv",
+        "fp_patient_labels": "demo_data/patient_labels.csv",
         "dir_expr": "demo_data/samples_cell_expression",
         "dir_centroids": "demo_data/samples_cell_centroids",
         "dir_edges": "demo_data/samples_cell_edges_20",
         "dir_splits": "demo_data/cross_validation_splits",
-        "fp_genes": "input_genes.txt"
+        "fp_genes": "demo_data/input_genes.txt"
     },
     "data_sources_predict": {
-        "fp_patient_labels": "demo_data/patient_labels.csv.csv",
+        "fp_patient_labels": "demo_data/patient_labels.csv",
         "dir_expr": "demo_data/samples_cell_expression",
         "dir_centroids": "demo_data/samples_cell_centroids",
         "dir_edges": "demo_data/samples_cell_edges_20"
