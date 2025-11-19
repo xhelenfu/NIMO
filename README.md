@@ -1,10 +1,10 @@
 # NIMO (Niches and biomarkers of IMmunOtherapy resistance)
 
-For more details, please refer to our paper [Spatial transcriptomics reveals distinct cellular niches of resistance to immune checkpoint blockade in melanoma](TODO add link).
+For more details, please refer to our paper [Spatial transcriptomics reveals distinct cellular niches of resistance to immune checkpoint blockade in melanoma].
 
 This repository contains the code for NIMO. Leveraging single-cell spatially resolved transcriptomics data, NIMO models local cellular neighbourhoods to identify recurring spatial patterns (niches) and predict patient response to immune checkpoint blockade.
 
-![alt text](Figure1.png)
+![alt text](Figure1.jpg)
 
 ## Installation
 
@@ -42,4 +42,4 @@ Please check out [tutorials](./tutorials/) for key use cases of NIMO, including:
 
 ## Citation
 
-If NIMO has assisted you with your work, please kindly cite our paper: TODO add link
+If NIMO has assisted you with your work, please kindly cite our paper.
