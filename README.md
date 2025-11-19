@@ -35,9 +35,7 @@ Installation is expected to be completed within a few minutes.
 
 ## Tutorials
 
-Please check out [tutorials](./tutorials/) for key use cases of NIMO, including:
-
-- [Training and validation](./tutorials/1_training_and_validation.ipynb)
+Please check out [Training and validation](./tutorials/1_training_and_validation.ipynb) for key steps in using NIMO.
 
 
 ## Citation
