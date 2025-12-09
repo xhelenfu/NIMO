@@ -74,7 +74,7 @@ class DataProcessing(data.Dataset):
             ]
 
         else:
-            fps_expr = glob.glob(opts_data_sources_predict.dir_expr + "/*.csv")[:3]
+            fps_expr = glob.glob(opts_data_sources_predict.dir_expr + "/*.csv")
             self.fps_expr = fps_expr.copy()
 
             self.split_ids = [str(os.path.basename(x).split("_")[0]) for x in self.fps_expr]
